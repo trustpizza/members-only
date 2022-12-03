@@ -1,16 +1,19 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, except: [:index]
+ # before_action :authenticate_user!, except: [:index]
 
   def new
     @post = current_user.posts.build
+    #@post = Post.new
   end
 
   def create
-    @post = current_member.posts.build(post_params)
+    @post = current_user.posts.build(post_params)
 
     respond_to do |format|
       if @post.save
-        puts 'hi'
+        format.html {redirect_to root_path, notice: 'Post was successfully created'}
+      else
+        
       end
     end
   end
