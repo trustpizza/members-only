@@ -1,6 +1,6 @@
 <h1>Posts</h1>
 
-<div class="posts">
+<div class="posts" data-turbo = 'false'>
   <% @posts.each do |post| %>
     <div class="title"><%= post.title%></div>
     <div class="body"><%= post.body %></div>
