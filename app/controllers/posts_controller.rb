@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
- # before_action :authenticate_user!, except: [:index]
+ before_action :authenticate_user!, except: [:index]
 
   def new
     @post = current_user.posts.build
@@ -13,7 +13,9 @@ class PostsController < ApplicationController
       if @post.save
         format.html {redirect_to root_path, notice: 'Post was successfully created'}
       else
-        
+        @posts = Post.all
+        flash[:alert] = @post.errors.count
+        format.html { render :index, alert: 'Post was not created.' }
       end
     end
   end
