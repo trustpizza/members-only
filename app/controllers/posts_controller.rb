@@ -20,6 +20,12 @@ class PostsController < ApplicationController
     end
   end
 
+  def index
+    @posts = Post.all
+    @users = User.all
+    @post = Post.new
+  end
+
   private
 
   def post_params
